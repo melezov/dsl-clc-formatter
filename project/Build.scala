@@ -16,7 +16,7 @@ object Build extends Build with Default {
     settings(
       name := "DSL-CLC Formatter Util"
     )
-    dependsOn (interface)
+    dependsOn(interface)
   )
 
   lazy val downloader = (
@@ -57,7 +57,7 @@ object Build extends Build with Default {
     settings(
       name := "DSL-CLC Formatter Language PHP"
     )
-  ) dependsOn (util)
+  ) dependsOn(util)
 
   lazy val languageScala = (
     project in file("formatter-language-scala")
@@ -66,7 +66,15 @@ object Build extends Build with Default {
       name := "DSL-CLC Formatter Language Scala"
     , autoScalaLibrary := true
     , crossPaths := true
-    , libraryDependencies += "com.danieltrinh" %% "scalariform" % "0.1.5"
+    , libraryDependencies += "org.scalariform" %% "scalariform" % "0.1.7"
+    )
+  ) dependsOn(util)
+
+  lazy val languageSQL = (
+    project in file("formatter-language-sql")
+    settings(defaultSettings: _*)
+    settings(
+      name := "DSL-CLC Formatter Language SQL"
     )
   ) dependsOn(util)
 
@@ -94,6 +102,7 @@ object Build extends Build with Default {
     , languageJava
     , languagePHP
     , languageScala
+    , languageSQL
     , downloader
     , clcDefaults
     )

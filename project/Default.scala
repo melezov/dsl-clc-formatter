@@ -19,12 +19,11 @@ trait Default {
         "-target", "1.6"
       , "-deprecation"
       , "-Xlint:all"
-      ) ++ (sys.env.get("JDK16_HOME") match {
-        case Some(jdk16Home) => Seq("-bootclasspath", jdk16Home + "/jre/lib/rt.jar")
+      ) ++ (sys.env.get("JAVA6_HOME") match {
+        case Some(java6Home) => Seq("-bootclasspath", java6Home + "/lib/rt.jar")
         case _ => Nil
       })
-    , crossScalaVersions := Seq("2.11.5", "2.10.4")
-    , scalaVersion := crossScalaVersions.value.head
+    , crossScalaVersions := Seq("2.11.7", "2.10.6")
     , scalacOptions := Seq(
         "-deprecation"
       , "-encoding", "UTF-8"

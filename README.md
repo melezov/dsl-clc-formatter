@@ -1,4 +1,4 @@
 dsl-clc-formatter
 =================
 
-Source formatter for Java and Scala sources
+Source formatter for DSL Platfom compiled sources

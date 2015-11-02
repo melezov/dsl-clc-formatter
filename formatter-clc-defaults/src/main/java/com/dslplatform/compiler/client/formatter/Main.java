@@ -39,7 +39,7 @@ public class Main {
     }
 
     public static void main(final String[] args) {
-        final Pattern sourcePattern = Pattern.compile(".*\\.(java|scala|php|cs)");
+        final Pattern sourcePattern = Pattern.compile(".*\\.(cs|java|php|scala|sql)");
         final Main main = new Main();
 
         for (final String arg : args) {
