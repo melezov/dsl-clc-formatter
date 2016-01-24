@@ -66,7 +66,7 @@ object Build extends Build with Default {
       name := "DSL-CLC Formatter Language Scala"
     , autoScalaLibrary := true
     , crossPaths := true
-    , libraryDependencies += "org.scalariform" %% "scalariform" % "0.1.7"
+    , libraryDependencies += "org.scalariform" %% "scalariform" % "0.1.8"
     )
   ) dependsOn(util)
 

@@ -60,7 +60,10 @@ public class PatternFormatter implements Formatter {
 
         while (true) {
             final String line = br.readLine();
-            if (line == null) return fromEntries(pairs);
+            if (line == null) {
+                br.close();
+                return fromEntries(pairs);
+            }
 
             final Map.Entry<Pattern, String> pair = parsePair(line);
             if (pair != null) pairs.add(pair);

@@ -13,7 +13,12 @@ public class FormatterCombinator implements Formatter {
     public String format(final String body) {
         String work = body;
         for (final Formatter formatter : formatters) {
-            work = formatter.format(work);
+            try {
+                work = formatter.format(work);
+            }
+            catch (final Exception e) {
+                System.err.println(e);
+            }
         }
         return work;
     }

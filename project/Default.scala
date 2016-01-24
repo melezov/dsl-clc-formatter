@@ -7,7 +7,7 @@ trait Default {
   private val NGSSnapshots = "NGS Snapshots" at "http://ngs.hr/nexus/content/repositories/snapshots/"
 
   lazy val defaultSettings =
-    net.virtualvoid.sbt.graph.Plugin.graphSettings ++ Seq(
+    net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings ++ Seq(
       organization := "com.dslplatform.formatter"
     , autoScalaLibrary := false
     , crossPaths := false

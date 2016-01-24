@@ -2,6 +2,7 @@ package com.dslplatform.compiler.client.formatter;
 
 import com.dslplatform.compiler.client.formatter.util.*;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -13,7 +14,10 @@ enum FormatterFactory {
     INSTANCE;
 
     private static InputStream readResource(final String name) throws IOException {
-        return FormatterFactory.class.getResourceAsStream(name);
+        final String override = System.getProperty(name);
+        return  override != null
+                ? new FileInputStream(override)
+                : FormatterFactory.class.getResourceAsStream(name);
     }
 
     private static Properties readProperties(final String name) throws IOException {
@@ -59,7 +63,7 @@ enum FormatterFactory {
     private static final Dependencies scala211Dependencies = new Dependencies(
             new ArtifactDownload(DSL_PLATFORM_NEXUS, "org.scala-lang",            "scala-library",                         "2.11.7", 5745606, "f75e7acabd57b213d6f61483240286c07213ec0e"),
             new ArtifactDownload(DSL_PLATFORM_NEXUS, "com.dslplatform.formatter", "dsl-clc-formatter-language-scala_2.11", "0.2.1",     2062, "6385182322cb40a969aa822e4115d44fa61a72f9"),
-            new ArtifactDownload(DSL_PLATFORM_NEXUS, "org.scalariform",           "scalariform_2.11",                      "0.1.7",  1934192, "7e542ae64556a0908fd04c0edceb4fe95cbccea4"),
+            new ArtifactDownload(DSL_PLATFORM_NEXUS, "org.scalariform",           "scalariform_2.11",                      "0.1.8",  1997668, "6b1564f69e3896f475b9465c1c6e3d06cf981fab"),
             new ArtifactDownload(DSL_PLATFORM_NEXUS, "org.scala-lang.modules",    "scala-xml_2.11",                        "1.0.5",   671138, "77ac9be4033768cf03cc04fbd1fc5e5711de2459")
     );
 
