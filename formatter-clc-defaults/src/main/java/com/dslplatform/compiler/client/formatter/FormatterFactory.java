@@ -15,7 +15,7 @@ enum FormatterFactory {
 
     private static InputStream readResource(final String name) throws IOException {
         final String override = System.getProperty(name);
-        return  override != null
+        return override != null
                 ? new FileInputStream(override)
                 : FormatterFactory.class.getResourceAsStream(name);
     }
@@ -83,6 +83,7 @@ enum FormatterFactory {
                 return new FormatterCombinator(
                         PatternFormatter.fromInputStream(readResource("csharp-clean.regex")),
                         csharpCodeFormatter,
+                        PatternFormatter.fromInputStream(readResource("csharp-post.regex")),
                         new NewlineTrimFormatter("\r\n"));
             }
 
@@ -96,6 +97,7 @@ enum FormatterFactory {
                 return new FormatterCombinator(
                         PatternFormatter.fromInputStream(readResource("java-clean.regex")),
                         javaCodeFormatter,
+                        PatternFormatter.fromInputStream(readResource("java-post.regex")),
                         new NewlineTrimFormatter("\n"));
             }
 
@@ -108,6 +110,7 @@ enum FormatterFactory {
                 return new FormatterCombinator(
                         PatternFormatter.fromInputStream(readResource("php-clean.regex")),
                         phpCodeFormatter,
+                        PatternFormatter.fromInputStream(readResource("php-post.regex")),
                         new NewlineTrimFormatter("\n"));
             }
 
@@ -121,6 +124,7 @@ enum FormatterFactory {
                 return new FormatterCombinator(
                         PatternFormatter.fromInputStream(readResource("scala-clean.regex")),
                         scalaCodeFormatter,
+                        PatternFormatter.fromInputStream(readResource("scala-post.regex")),
                         new NewlineTrimFormatter("\n"));
             }
 
@@ -133,6 +137,7 @@ enum FormatterFactory {
                 return new FormatterCombinator(
                         PatternFormatter.fromInputStream(readResource("sql-clean.regex")),
                         sqlCodeFormatter,
+                        PatternFormatter.fromInputStream(readResource("sql-post.regex")),
                         new NewlineTrimFormatter("\n"));
             }
 

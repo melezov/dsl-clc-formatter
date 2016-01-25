@@ -22,8 +22,9 @@ public class PatternFormatter implements Formatter {
         this.replacements = replacements;
     }
 
-    public static PatternFormatter fromEntries(final List<Map.Entry<Pattern, String>> pairs) {
+    public static Formatter fromEntries(final List<Map.Entry<Pattern, String>> pairs) {
         final int count = pairs.size();
+        if (count == 0) return NoopFormatter.INSTANCE;
 
         final Pattern[] patterns = new Pattern[count];
         final String[] replacements = new String[count];
@@ -51,10 +52,16 @@ public class PatternFormatter implements Formatter {
         if (pair.length != 2) { throw new IllegalArgumentException("Invalid regex-replacement pair: " + line); }
 
         final Pattern pattern = Pattern.compile(pair[0]);
-        return new AbstractMap.SimpleEntry<Pattern, String>(pattern, pair[1]);
+        final String replacement = pair[1]
+                .replace("\\n", "\n")
+                .replace("\\r", "\r")
+                .replace("\\t", "\t");
+        return new AbstractMap.SimpleEntry<Pattern, String>(pattern, replacement);
     }
 
-    public static PatternFormatter fromInputStream(final InputStream propsStream) throws IOException {
+    public static Formatter fromInputStream(final InputStream propsStream) throws IOException {
+        if (propsStream == null) return NoopFormatter.INSTANCE;
+
         final BufferedReader br = new BufferedReader(new InputStreamReader(propsStream, "UTF-8"));
         final ArrayList<Map.Entry<Pattern, String>> pairs = new ArrayList<Map.Entry<Pattern, String>>();
 
