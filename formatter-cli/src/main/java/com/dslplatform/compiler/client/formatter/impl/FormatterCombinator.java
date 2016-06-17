@@ -20,8 +20,7 @@ public class FormatterCombinator implements Formatter {
         for (final Formatter formatter : formatters) {
             try {
                 work = formatter.format(context, work);
-            }
-            catch (final Exception e) {
+            } catch (final Exception e) {
                 logger.error("Caught exception thrown by {}: {}, skipping ...", formatter, e);
             }
         }

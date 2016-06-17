@@ -18,7 +18,11 @@ public class ScalaCodeFormatter implements Formatter {
     private final Some<String> newline;
     private final String scalaVersion;
 
-    public ScalaCodeFormatter(final Logger logger, final Properties properties, final String newline, final String scalaVersion) {
+    public ScalaCodeFormatter(
+            final Logger logger,
+            final Properties properties,
+            final String newline,
+            final String scalaVersion) {
         this.logger = logger;
         this.preferences = PreferencesImporterExporter.getPreferences(properties);
         this.newline = new Some<String>(newline);

@@ -51,7 +51,7 @@ class FormatterFactory {
             final Repository repository = new Repository(repositoryMatcher.group(1), new URI(repositoryMatcher.group(2)));
 
             final List<ArtifactDownload> artifacts = new ArrayList<ArtifactDownload>();
-            while(true) {
+            while (true) {
                 final String artifactLine = br.readLine();
                 if (artifactLine == null) break;
                 if (artifactLine.isEmpty()) continue;
@@ -70,8 +70,7 @@ class FormatterFactory {
                         artifactMatcher.group(5)));
             }
             return new Dependencies(logger, artifacts);
-        }
-        catch (final URISyntaxException e) {
+        } catch (final URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -164,8 +163,7 @@ class FormatterFactory {
 
             logger.error("Language {} is not supported!", language);
             return NoopFormatter.INSTANCE;
-        }
-        catch (final Exception e) {
+        } catch (final Exception e) {
             logger.error("Could not create formatter for language {}: {}", language, e);
             return NoopFormatter.INSTANCE;
         }

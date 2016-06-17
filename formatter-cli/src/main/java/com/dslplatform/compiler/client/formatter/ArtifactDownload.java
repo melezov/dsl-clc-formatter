@@ -49,8 +49,7 @@ public class ArtifactDownload {
                     groupId.replace('.', '/'),
                     artifactId,
                     version));
-        }
-        catch (final URISyntaxException e) {
+        } catch (final URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -107,23 +106,16 @@ public class ArtifactDownload {
             try {
                 final byte[] body = new byte[length];
                 int offset = 0;
-                while(offset < length) {
+                while (offset < length) {
                     final int read = is.read(body, offset, length - offset);
                     if (read == -1) break;
                     offset += read;
                 }
-                if (is.read() != -1) {
-                    throw new IOException(String.format(
-                            "Artifact was too big (expected %d bytes)",
-                            length));
-                }
+                if (is.read() != -1) { throw new IOException(String.format("Artifact was too big (expected %d bytes)",
+                        length)); }
 
-                if (offset != length) {
-                    throw new IOException(String.format(
-                            "Artifact was too small (got %d/%d bytes)",
-                            offset,
-                            length));
-                }
+                if (offset != length) { throw new IOException(String.format("Artifact was too small (got %d/%d bytes)",
+                        offset, length)); }
 
                 verifyDownload(body);
 
@@ -144,12 +136,9 @@ public class ArtifactDownload {
         private void verifyDownload(final byte[] body) throws IOException {
             final byte[] digest = getDigest().digest(body);
 
-            if (!Arrays.equals(sha1, digest)) {
-                throw new IOException(String.format(
-                        "Digest mismatch; expected \"%s\" but got \"%s\"",
-                        hexSha1,
-                        DatatypeConverter.printHexBinary(digest).toLowerCase(Locale.ENGLISH)));
-            }
+            if (!Arrays.equals(sha1, digest)) { throw new IOException(String.format(
+                    "Digest mismatch; expected \"%s\" but got \"%s\"", hexSha1, DatatypeConverter
+                            .printHexBinary(digest).toLowerCase(Locale.ENGLISH))); }
         }
 
         private void persist(final File jarFile, final byte[] body) throws IOException {
@@ -162,8 +151,7 @@ public class ArtifactDownload {
             try {
                 logger.debug("Writing {} ({} bytes)", jarFile, body.length);
                 fos.write(body);
-            }
-            finally {
+            } finally {
                 fos.close();
             }
         }

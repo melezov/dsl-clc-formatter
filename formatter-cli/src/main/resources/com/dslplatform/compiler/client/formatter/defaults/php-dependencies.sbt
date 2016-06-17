@@ -1,3 +1,3 @@
 "DSL Platform Nexus" at "https://dsl-platform.com/nexus/content/groups/public/"
 
-"com.dslplatform.formatter" % "dsl-clc-formatter-language-php" % "0.3.0" // 151400 bytes, SHA-1: 876497476c7ee029a372b424772edf9b072a6fa5
+"com.dslplatform.formatter" % "dsl-clc-formatter-language-php" % "0.3.1" // 1697 bytes, SHA-1: 185a1ed8a296d7ad1686f7e069c5ce7d23e7c776
